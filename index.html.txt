@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para ti 🌻</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(#fff8d9, #dff5d8);
+            text-align: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 40px;
+            color: #765c00;
+        }
+
+        p {
+            color: #5f5f5f;
+            font-size: 18px;
+        }
+
+        #jardin {
+            position: relative;
+            height: 55vh;
+            margin-top: 20px;
+        }
+
+        .flor {
+            position: absolute;
+            font-size: 55px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .flor:hover {
+            transform: scale(1.2);
+        }
+
+        #mensaje {
+            display: none;
+            position: fixed;
+            left: 10%;
+            right: 10%;
+            bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            color: #555;
+            font-size: 18px;
+        }
+
+        #final {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255,248,217,0.97);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        #final h2 {
+            color: #765c00;
+        }
+
+        #final p {
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        button {
+            border: none;
+            background: #f4c430;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 25px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🌻 Tengo algo para ti...</h1>
+
+    <p>Toca las flores que encuentres.</p>
+
+    <div id="jardin">
+
+        <div class="flor" style="left: 10%; top: 20%;" onclick="tocarFlor(this, 'Una flor por todas las veces que me haces sonreír. 💛')">🌻</div>
+
+        <div class="flor" style="left: 65%; top: 10%;" onclick="tocarFlor(this, 'Una porque simplemente me encanta compartir mi vida contigo.')">🌻</div>
+
+        <div class="flor" style="left: 35%; top: 40%;" onclick="tocarFlor(this, 'Una porque hoy quería hacerte algo diferente.')">🌻</div>
+
+        <div class="flor" style="left: 75%; top: 55%;" onclick="tocarFlor(this, 'Y otra porque te quiero muchísimo. 💛')">🌻</div>
+
+        <div class="flor" style="left: 15%; top: 65%;" onclick="tocarFlor(this, 'Esta última es porque eres tú. Y eso ya es suficiente.')">🌻</div>
+
+    </div>
+
+    <div id="mensaje"></div>
+
+    <div id="final">
+
+        <h2>🌻 Encontraste todas 🌻</h2>
+
+        <p>
+            No quería regalarte simplemente unas flores amarillas
+            como todos los demás...
+        </p>
+
+        <p>
+            Quería hacerte algo yo.
+        </p>
+
+        <p>
+            Así que hice este pequeño jardín para ti. 💛
+        </p>
+
+        <p>
+            <strong>Te quiero muchísimo, amor.</strong>
+        </p>
+
+        <button onclick="cerrarFinal()">🌻 Volver al jardín</button>
+
+    </div>
+
+    <script>
+
+        let floresEncontradas = 0;
+
+        function tocarFlor(flor, texto) {
+
+            if (flor.dataset.tocada === "true") {
+                return;
+            }
+
+            flor.dataset.tocada = "true";
+
+            floresEncontradas++;
+
+            document.getElementById("mensaje").innerHTML = texto;
+            document.getElementById("mensaje").style.display = "block";
+
+            flor.style.opacity = "0.4";
+
+            setTimeout(function() {
+                document.getElementById("mensaje").style.display = "none";
+            }, 2500);
+
+            if (floresEncontradas === 5) {
+
+                setTimeout(function() {
+                    document.getElementById("final").style.display = "flex";
+                }, 3000);
+
+            }
+        }
+
+        function cerrarFinal() {
+            document.getElementById("final").style.display = "none";
+        }
+
+    </script>
+
+</body>
+</html>
